@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-feb-2019 10:11:29 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="directoriobibliotecas" name="ejemplo03.dominio.Municipio" optimistic-lock="version" table="municipio">
+    <id name="idMunicipio" type="java.lang.Integer">
+      <column name="id_municipio"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="ejemplo03.dominio.Provincia" fetch="select" name="provincia">
+      <column name="id_provincia" not-null="true"/>
+    </many-to-one>
+    <property name="codMunicipio" type="int">
+      <column name="cod_municipio" not-null="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="bibliotecas" table="biblioteca">
+      <key>
+        <column name="id_municipio" not-null="true"/>
+      </key>
+      <one-to-many class="ejemplo03.dominio.Biblioteca"/>
+    </set>
+  </class>
+</hibernate-mapping>

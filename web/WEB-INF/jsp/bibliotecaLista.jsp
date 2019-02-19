@@ -1,15 +1,16 @@
+<%@page import="ejemplo03.dominio.Biblioteca"%>
 <%@page import="org.springframework.web.util.HtmlUtils"%>
-<%@page import="ejemplo03.dominio.Profesor"%>
+<%@page import="ejemplo03.dominio.Biblioteca"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    List<Profesor> profesores = (List<Profesor>) request.getAttribute("profesores");
+    List<Biblioteca> bibliotecas = (List<Biblioteca>) request.getAttribute("bibliotecas");
 %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Profesor</title>
+        <title>Biblioteca</title>
         <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
         <link href="<%=request.getContextPath()%>/css/bootstrap-responsive.css" rel="stylesheet">
         <script type="text/javascript"  src="<%=request.getContextPath()%>/js/jquery-1.9.0.js"></script>
@@ -23,7 +24,7 @@
             <div class="offset1  span10">
                 <div class="row-fluid">
                     <div class="span12">
-                        <a id="btnNuevo" class="btn btn-primary" href="<%=request.getContextPath()%>/profesor/newForInsert.html">Nuevo Profesor</a>
+                        <a id="btnNuevo" class="btn btn-primary" href="<%=request.getContextPath()%>/profesor/newForInsert.html">Nueva biblioteca</a>
                     </div>
                 </div>
                 <div class="row-fluid">
@@ -45,7 +46,7 @@
                             </thead>
                             <tbody>
                                 <%
-                                    for (Profesor profesor : profesores) {
+                                    for (Biblioteca biblioteca : bibliotecas) {
                                 %>
                                 <tr>
                                     <td><a href="<%=request.getContextPath()%>/profesor/readForUpdate.html?id=<%=profesor.getId()%>" title="Editar" ><%=profesor.getId()%></a></td>

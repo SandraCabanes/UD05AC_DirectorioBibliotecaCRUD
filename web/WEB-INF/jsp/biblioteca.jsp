@@ -10,15 +10,15 @@
     switch (formOperation) {
         case Insert:
             labelButton = "Insertar";
-            urlAction = request.getContextPath() + "/profesor/insert.html";
+            urlAction = request.getContextPath() + "/biblioteca/insert.html";
             break;
         case Update:
             labelButton = "Actualizar";
-            urlAction = request.getContextPath() + "/profesor/update.html";
+            urlAction = request.getContextPath() + "/biblioteca/update.html";
             break;
         case Delete:
             labelButton = "Borrar";
-            urlAction = request.getContextPath() + "/profesor/delete.html";
+            urlAction = request.getContextPath() + "/biblioteca/delete.html";
             break;
         default:
             throw new RuntimeException("El valor de 'formOperation' no es válido" + formOperation);
@@ -44,7 +44,7 @@
                 <form action="<%=urlAction%>" method="post" >
                     <fieldset>
                         <label class="control-label" for="id">Id:</label>
-                        <input class="input-large disabled " id="id" name="id" type="text" value="${profesor.id}" readonly="readonly">
+                        <input class="input-large disabled " id="id" name="id" type="text" value="${biblioteca.id}" readonly="readonly">
 
                         <label class="control-label" for="nombre">Nombre:</label>
                         <input class="input-xlarge" id="nombre" type="text" name="nombre" value="${profesor.nombre}" >

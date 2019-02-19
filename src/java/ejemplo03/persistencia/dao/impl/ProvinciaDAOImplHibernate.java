@@ -4,14 +4,14 @@
  */
 package ejemplo03.persistencia.dao.impl;
 
-import ejemplo03.persistencia.dao.UsuarioDAO;
-import ejemplo03.dominio.Usuario;
+import ejemplo03.persistencia.dao.ProvinciaDAO;
+import ejemplo03.dominio.Provincia;
 import com.fpmislata.persistencia.dao.impl.GenericDAOImplHibernate;
 
 /**
  *
  * @author papa
  */
-public class UsuarioDAOImplHibernate extends GenericDAOImplHibernate<Usuario,Integer> implements  UsuarioDAO {
+public class ProvinciaDAOImplHibernate extends GenericDAOImplHibernate<Provincia,Integer> implements  ProvinciaDAO {
 
 }

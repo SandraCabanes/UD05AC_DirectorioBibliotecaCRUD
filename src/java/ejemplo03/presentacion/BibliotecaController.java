@@ -6,10 +6,9 @@ package ejemplo03.presentacion;
 
 import com.fpmislata.persistencia.dao.BussinessException;
 import com.fpmislata.persistencia.dao.BussinessMessage;
-import ejemplo03.dominio.Profesor;
-import ejemplo03.dominio.Profesor;
-import ejemplo03.persistencia.dao.ProfesorDAO;
-import ejemplo03.persistencia.dao.ProfesorDAO;
+import ejemplo03.dominio.Biblioteca;
+import ejemplo03.persistencia.dao.BibliotecaDAO;
+import ejemplo03.persistencia.dao.BibliotecaDAO;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
@@ -27,20 +26,20 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Lorenzo González
  */
 @Controller
-public class ProfesorController {
+public class BibliotecaController {
 
     @Autowired
-    private ProfesorDAO profesorDAO;
+    private BibliotecaDAO bibliotecaDAO;
     
     @RequestMapping({"/index.html"})
-    public ModelAndView listarProfesores(HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView listarBibliotecas(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
 
         try {
-            List<Profesor> profesores=profesorDAO.findAll();
-            model.put("profesores",profesores);
-            viewName = "profesorLista";
+                List<Biblioteca> bibliotecas=bibliotecaDAO.findAll();
+            model.put("bibliotecas",bibliotecas);
+            viewName = "bibliotecaLista";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
             model.put("backURL", request.getContextPath() + "/index.html");
@@ -49,16 +48,16 @@ public class ProfesorController {
 
         return new ModelAndView(viewName, model);
     }
-    @RequestMapping({"/profesor/newForInsert"})
+    @RequestMapping({"/biblioteca/newForInsert"})
     public ModelAndView newForInsert(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
 
         try {
-            Profesor profesor = profesorDAO.create();
+            Biblioteca biblioteca = bibliotecaDAO.create();
             model.put("formOperation", FormOperation.Insert);
-            model.put("profesor", profesor);
-            viewName = "profesor";
+            model.put("biblioteca", biblioteca);
+            viewName = "biblioteca";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
             model.put("backURL", request.getContextPath() + "/index.html");
@@ -68,7 +67,7 @@ public class ProfesorController {
         return new ModelAndView(viewName, model);
     }
 
-    @RequestMapping({"/profesor/readForUpdate"})
+    @RequestMapping({"/biblioteca/readForUpdate"})
     public ModelAndView readForUpdate(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
@@ -76,18 +75,18 @@ public class ProfesorController {
         try {
             int id;
             try {
-                id = Integer.parseInt(request.getParameter("id"));
+                id = Integer.parseInt(request.getParameter("id_biblioteca"));
             } catch (NumberFormatException nfe) {
                 throw new BussinessException(new BussinessMessage(null,"Se debe escribir un Id válido"));
             }
 
-            Profesor profesor = profesorDAO.get(id);
-            if (profesor == null) {
-                throw new BussinessException(new BussinessMessage(null, "No existe el profesor con id=" + id));
+            Biblioteca biblioteca = bibliotecaDAO.get(id);
+            if (biblioteca == null) {
+                throw new BussinessException(new BussinessMessage(null, "No existe la biblioteca con id=" + id));
             }
             model.put("formOperation", FormOperation.Update);
-            model.put("profesor", profesor);
-            viewName = "profesor";
+            model.put("biblioteca", biblioteca);
+            viewName = "biblioteca";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
             model.put("backURL", request.getContextPath() + "/index.html");
@@ -97,25 +96,25 @@ public class ProfesorController {
         return new ModelAndView(viewName, model);
     }
 
-    @RequestMapping({"/profesor/readForDelete"})
+    @RequestMapping({"/biblioteca/readForDelete"})
     public ModelAndView readForDelete(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
         try {
             int id;
             try {
-                id = Integer.parseInt(request.getParameter("id"));
+                id = Integer.parseInt(request.getParameter("id_biblioteca"));
             } catch (NumberFormatException nfe) {
                 throw new BussinessException(new BussinessMessage(null,"Se debe escribir un Id válido"));
             }
 
-            Profesor profesor = profesorDAO.get(id);
-            if (profesor == null) {
-                throw new BussinessException(new BussinessMessage(null, "No existe el profesor con id=" + id));
+            Biblioteca biblioteca = bibliotecaDAO.get(id);
+            if (biblioteca == null) {
+                throw new BussinessException(new BussinessMessage(null, "No existe la biblioteca con id=" + id));
             }
             model.put("formOperation", FormOperation.Delete);
-            model.put("profesor", profesor);
-            viewName = "profesor";
+            model.put("biblioteca", biblioteca);
+            viewName = "biblioteca";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
             model.put("backURL", request.getContextPath() + "/index.html");
@@ -125,7 +124,7 @@ public class ProfesorController {
         return new ModelAndView(viewName, model);
     }
 
-    @RequestMapping({"/profesor/insert.html"})
+    @RequestMapping({"/biblioteca/insert.html"})
     public ModelAndView insert(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
@@ -136,25 +135,31 @@ public class ProfesorController {
             throw new RuntimeException(ex);
         }
 
-        Profesor profesor = null;
+        Biblioteca biblioteca = null;
         try {
-            profesor = profesorDAO.create();
+            biblioteca = bibliotecaDAO.create();
 
-            profesor.setNombre(request.getParameter("nombre"));
-            profesor.setApe1(request.getParameter("ape1"));
-            profesor.setApe2(request.getParameter("ape2"));
+            biblioteca.setTipo(request.getParameter("tipo"));
+            biblioteca.setNombre(request.getParameter("nombre"));
+            biblioteca.setDireccion(request.getParameter("direccion"));
+            biblioteca.setCodPostal(request.getParameter("cod_postal"));
+            biblioteca.setTelefono(request.getParameter("telefono"));
+            biblioteca.setWeb(request.getParameter("web"));
+            biblioteca.setEmail(request.getParameter("email"));
+            biblioteca.setCatalogo(request.getParameter("catalogo"));
+            
 
-            profesorDAO.saveOrUpdate(profesor);
+            bibliotecaDAO.saveOrUpdate(biblioteca);
 
             viewName = "redirect:/index.html";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            if (profesor!=null) {
-                profesor.setId(0);
+            if (biblioteca!=null) {
+                biblioteca.setIdBiblioteca(0);
             }
-            model.put("profesor", profesor);
+            model.put("biblioteca", biblioteca);
             model.put("formOperation", FormOperation.Insert);
-            viewName = "profesor";
+            viewName = "biblioteca";
         }
 
 
@@ -162,7 +167,7 @@ public class ProfesorController {
         return new ModelAndView(viewName, model);
     }
 
-    @RequestMapping({"/profesor/update.html"})
+    @RequestMapping({"/biblioteca/update.html"})
     public ModelAndView update(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
@@ -171,61 +176,66 @@ public class ProfesorController {
         } catch (UnsupportedEncodingException ex) {
             throw new RuntimeException(ex);
         }
-        Profesor profesor = null;
+        Biblioteca biblioteca = null;
         try {
             int id;
             try {
-                id = Integer.parseInt(request.getParameter("id"));
+                id = Integer.parseInt(request.getParameter("id_biblioteca"));
             } catch (NumberFormatException nfe) {
                 throw new BussinessException(new BussinessMessage(null,"Se debe escribir un Id válido"));
             }
-            profesor = profesorDAO.get(id);
-            if (profesor == null) {
-                throw new BussinessException(new BussinessMessage(null, "Ya no existe el profesor."));
+            biblioteca = bibliotecaDAO.get(id);
+            if (biblioteca == null) {
+                throw new BussinessException(new BussinessMessage(null, "Ya no existe la biblioteca."));
             }
-            profesor.setNombre(request.getParameter("nombre"));
-            profesor.setApe1(request.getParameter("ape1"));
-            profesor.setApe2(request.getParameter("ape2"));
+            biblioteca.setTipo(request.getParameter("tipo"));
+            biblioteca.setNombre(request.getParameter("nombre"));
+            biblioteca.setDireccion(request.getParameter("direccion"));
+            biblioteca.setCodPostal(request.getParameter("cod_postal"));
+            biblioteca.setTelefono(request.getParameter("telefono"));
+            biblioteca.setWeb(request.getParameter("web"));
+            biblioteca.setEmail(request.getParameter("email"));
+            biblioteca.setCatalogo(request.getParameter("catalogo"));
 
-            profesorDAO.saveOrUpdate(profesor);
+            bibliotecaDAO.saveOrUpdate(biblioteca);
 
             viewName = "redirect:/index.html";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("profesor", profesor);
+            model.put("biblioteca", biblioteca);
             model.put("formOperation", FormOperation.Update);
-            viewName = "profesor";
+            viewName = "biblioteca";
         }
 
         return new ModelAndView(viewName, model);
     }
 
-    @RequestMapping({"/profesor/delete.html"})
+    @RequestMapping({"/biblioteca/delete.html"})
     public ModelAndView delete(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
 
-        Profesor profesor=null;
+        Biblioteca biblioteca=null;
         try {
             int id;
             try {
-                id = Integer.parseInt(request.getParameter("id"));
+                id = Integer.parseInt(request.getParameter("id_biblioteca"));
             } catch (NumberFormatException nfe) {
                 throw new BussinessException(new BussinessMessage(null,"Se debe escribir un Id válido"));
             }
-            profesor = profesorDAO.get(id);
-            if (profesor == null) {
-                throw new BussinessException(new BussinessMessage(null, "Ya no existe el profesor a borrar"));
+            biblioteca = bibliotecaDAO.get(id);
+            if (biblioteca == null) {
+                throw new BussinessException(new BussinessMessage(null, "Ya no existe la biblioteca a borrar"));
             }
 
-            profesorDAO.delete(id);
+            bibliotecaDAO.delete(id);
 
             viewName = "redirect:/index.html";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("profesor", profesor);
+            model.put("biblioteca", biblioteca);
             model.put("formOperation", FormOperation.Delete);
-            viewName = "profesor";
+            viewName = "biblioteca";
         }
 
         return new ModelAndView(viewName, model);

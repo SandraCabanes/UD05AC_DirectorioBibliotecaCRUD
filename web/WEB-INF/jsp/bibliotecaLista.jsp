@@ -24,24 +24,23 @@
             <div class="offset1  span10">
                 <div class="row-fluid">
                     <div class="span12">
-                        <a id="btnNuevo" class="btn btn-primary" href="<%=request.getContextPath()%>/profesor/newForInsert.html">Nueva biblioteca</a>
+                        <a id="btnNuevo" class="btn btn-primary" href="<%=request.getContextPath()%>/biblioteca/newForInsert.html">Nueva biblioteca</a>
                     </div>
                 </div>
                 <div class="row-fluid">
-
-
                     <div class="span12">
-
-
-
                         <table class="table table-bordered table-hover table-condensed">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>Id</th>
                                     <th>Nombre</th>
-                                    <th>1&ordm; Apellido</th>
-                                    <th>2&ordm; Apellido</th>
-                                    <th>&nbsp;</th>
+                                    <th>Tipo</th>
+                                    <th>Direccion</th>
+                                    <th>Cod postal</th>
+                                    <th>Telefono</th>
+                                    <th>Web</th>
+                                    <th>Email</th>
+                                    <th>Catalogo</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -49,12 +48,17 @@
                                     for (Biblioteca biblioteca : bibliotecas) {
                                 %>
                                 <tr>
-                                    <td><a href="<%=request.getContextPath()%>/profesor/readForUpdate.html?id=<%=profesor.getId()%>" title="Editar" ><%=profesor.getId()%></a></td>
-                                    <td><%=HtmlUtils.htmlEscape(profesor.getNombre())%></td>
-                                    <td><%=HtmlUtils.htmlEscape(profesor.getApe1())%></td>
-                                    <td><%=HtmlUtils.htmlEscape(profesor.getApe2())%></td>
+                                    <td><a href="<%=request.getContextPath()%>/biblioteca/readForUpdate.html?id=<%=biblioteca.getIdBiblioteca()%>" title="Editar" ><%=biblioteca.getIdBiblioteca()%></a></td>
+                                    <td><%=HtmlUtils.htmlEscape(biblioteca.getNombre())%></td>
+                                    <td><%=HtmlUtils.htmlEscape(biblioteca.getTipo())%></td>
+                                    <td><%=HtmlUtils.htmlEscape(biblioteca.getDireccion())%></td>
+                                    <td><%=HtmlUtils.htmlEscape(biblioteca.getCodPostal())%></td>
+                                    <td><%=HtmlUtils.htmlEscape(biblioteca.getTelefono())%></td>
+                                    <td><%=HtmlUtils.htmlEscape(biblioteca.getWeb())%></td>
+                                    <td><%=HtmlUtils.htmlEscape(biblioteca.getEmail())%></td>
+                                    <td><%=HtmlUtils.htmlEscape(biblioteca.getCatalogo())%></td>
                                     <td>
-                                        <a href="<%=request.getContextPath()%>/profesor/readForDelete.html?id=<%=profesor.getId()%>" title="Borrar" ><i class="icon-trash"></i></a>
+                                        <a href="<%=request.getContextPath()%>/biblioteca/readForDelete.html?id=<%=biblioteca.getIdBiblioteca()%>" title="Borrar" ><i class="icon-trash"></i></a>
                                     </td>
                                 </tr>
                                 <%
@@ -62,8 +66,6 @@
                                 %>
                             </tbody>
                         </table>
-
-
                     </div>
                 </div>
             </div>

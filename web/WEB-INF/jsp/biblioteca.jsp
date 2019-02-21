@@ -28,7 +28,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Profesor</title>
+        <title>Biblioteca</title>
         <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
         <link href="<%=request.getContextPath()%>/css/bootstrap-responsive.css" rel="stylesheet">
         <script type="text/javascript"  src="<%=request.getContextPath()%>/js/jquery-1.9.0.js"></script>
@@ -40,20 +40,37 @@
         </div>
         <div class="row">
             <div class="offset1 span10 well">
-                <h3>Profesor</h3>
+                <h3>Biblioteca</h3>
                 <form action="<%=urlAction%>" method="post" >
                     <fieldset>
                         <label class="control-label" for="id">Id:</label>
-                        <input class="input-large disabled " id="id" name="id" type="text" value="${biblioteca.id}" readonly="readonly">
+                        <input class="input-large disabled " id="id" name="id" type="text" value="${biblioteca.idBiblioteca}" readonly="readonly">
 
                         <label class="control-label" for="nombre">Nombre:</label>
-                        <input class="input-xlarge" id="nombre" type="text" name="nombre" value="${profesor.nombre}" >
+                        <input class="input-xlarge" id="nombre" type="text" name="nombre" value="${biblioteca.nombre}" >
 
-                        <label class="control-label" for="ape1">1º Apellido:</label>
-                        <input class="input-xlarge" id="ape1" type="text" name="ape1" value="${profesor.ape1}" >
+                        <label class="control-label" for="tipo">Tipo:</label>
+                        <input class="input-xlarge" id="tipo" type="text" name="tipo" value="${biblioteca.tipo}" >
 
-                        <label class="control-label" for="ape2">2º Apellido:</label>
-                        <input class="input-xlarge" id="ape2" type="text" name="ape2" value="${profesor.ape2}" >
+                        <label class="control-label" for="direccion">Dirección:</label>
+                        <input class="input-xlarge" id="direccion" type="text" name="direccion" value="${biblioteca.direccion}" >
+
+                        <label class="control-label" for="codPostal">CodPostal:</label>
+                        <input class="input-xlarge" id="codPostal" type="text" name="codPostal" value="${biblioteca.codPostal}" >
+
+                        <label class="control-label" for="telefono">Telefono:</label>
+                        <input class="input-xlarge" id="telefono" type="text" name="telefono" value="${biblioteca.telefono}" >
+
+                        <label class="control-label" for="web">Web:</label>
+                        <input class="input-xlarge" id="web" type="text" name="web" value="${biblioteca.web}" >
+
+                        <label class="control-label" for="email">Email:</label>
+                        <input class="input-xlarge" id="email" type="text" name="email" value="${biblioteca.email}" >
+                        
+                        <label class="control-label" for="catalogo">Catalogo:</label>
+                        <input class="input-xlarge" id="catalogo" type="text" name="catalogo" value="${biblioteca.catalogo}" >
+                      
+                        
                     </fieldset>
                     <% if (request.getAttribute("bussinessMessages") != null) {%>
                     <div class="alert alert-error alert-block">

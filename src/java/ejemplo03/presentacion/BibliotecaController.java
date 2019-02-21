@@ -75,7 +75,7 @@ public class BibliotecaController {
         try {
             int id;
             try {
-                id = Integer.parseInt(request.getParameter("id_biblioteca"));
+                id = Integer.parseInt(request.getParameter("id"));
             } catch (NumberFormatException nfe) {
                 throw new BussinessException(new BussinessMessage(null,"Se debe escribir un Id válido"));
             }
@@ -103,7 +103,7 @@ public class BibliotecaController {
         try {
             int id;
             try {
-                id = Integer.parseInt(request.getParameter("id_biblioteca"));
+                id = Integer.parseInt(request.getParameter("id"));
             } catch (NumberFormatException nfe) {
                 throw new BussinessException(new BussinessMessage(null,"Se debe escribir un Id válido"));
             }
@@ -142,7 +142,7 @@ public class BibliotecaController {
             biblioteca.setTipo(request.getParameter("tipo"));
             biblioteca.setNombre(request.getParameter("nombre"));
             biblioteca.setDireccion(request.getParameter("direccion"));
-            biblioteca.setCodPostal(request.getParameter("cod_postal"));
+            biblioteca.setCodPostal(request.getParameter("codPostal"));
             biblioteca.setTelefono(request.getParameter("telefono"));
             biblioteca.setWeb(request.getParameter("web"));
             biblioteca.setEmail(request.getParameter("email"));
@@ -180,7 +180,7 @@ public class BibliotecaController {
         try {
             int id;
             try {
-                id = Integer.parseInt(request.getParameter("id_biblioteca"));
+                id = Integer.parseInt(request.getParameter("id"));
             } catch (NumberFormatException nfe) {
                 throw new BussinessException(new BussinessMessage(null,"Se debe escribir un Id válido"));
             }
@@ -191,7 +191,7 @@ public class BibliotecaController {
             biblioteca.setTipo(request.getParameter("tipo"));
             biblioteca.setNombre(request.getParameter("nombre"));
             biblioteca.setDireccion(request.getParameter("direccion"));
-            biblioteca.setCodPostal(request.getParameter("cod_postal"));
+            biblioteca.setCodPostal(request.getParameter("codPostal"));
             biblioteca.setTelefono(request.getParameter("telefono"));
             biblioteca.setWeb(request.getParameter("web"));
             biblioteca.setEmail(request.getParameter("email"));
@@ -219,7 +219,7 @@ public class BibliotecaController {
         try {
             int id;
             try {
-                id = Integer.parseInt(request.getParameter("id_biblioteca"));
+                id = Integer.parseInt(request.getParameter("id"));
             } catch (NumberFormatException nfe) {
                 throw new BussinessException(new BussinessMessage(null,"Se debe escribir un Id válido"));
             }

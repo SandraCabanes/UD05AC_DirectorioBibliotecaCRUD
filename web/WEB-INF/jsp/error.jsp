@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Profesor</title>
+        <title>Biblioteca</title>
         <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
         <link href="<%=request.getContextPath()%>/css/bootstrap-responsive.css" rel="stylesheet">
         <script type="text/javascript"  src="<%=request.getContextPath()%>/js/jquery-1.8.0.js"></script>

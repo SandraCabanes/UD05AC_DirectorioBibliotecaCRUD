@@ -3,11 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Sandra/Documents/MEGA/DAM/2%20DAM/Acceso%20a%20datos/UD06%20-%20Spring/UD05_DirectorioBibliotecasCRUD/src/java/ejemplo03/persistencia/dao/impl/MunicipioDAOImplHibernate.java</file>
+            <file>file:/C:/Users/Sandra/Documents/MEGA/DAM/2%20DAM/Acceso%20a%20datos/UD06%20-%20Spring/UD05_DirectorioBibliotecasCRUD/src/java/ejemplo03/presentacion/IndexController.java</file>
             <file>file:/C:/Users/Sandra/Documents/MEGA/DAM/2%20DAM/Acceso%20a%20datos/UD06%20-%20Spring/UD05_DirectorioBibliotecasCRUD/web/WEB-INF/jsp/municipio.jsp</file>
             <file>file:/C:/Users/Sandra/Documents/MEGA/DAM/2%20DAM/Acceso%20a%20datos/UD06%20-%20Spring/UD05_DirectorioBibliotecasCRUD/web/WEB-INF/jsp/municipioLista.jsp</file>
             <file>file:/C:/Users/Sandra/Documents/MEGA/DAM/2%20DAM/Acceso%20a%20datos/UD06%20-%20Spring/UD05_DirectorioBibliotecasCRUD/web/WEB-INF/jsp/index.jsp</file>
             <file>file:/C:/Users/Sandra/Documents/MEGA/DAM/2%20DAM/Acceso%20a%20datos/UD06%20-%20Spring/UD05_DirectorioBibliotecasCRUD/src/java/ejemplo03/presentacion/MunicipioController.java</file>
             <file>file:/C:/Users/Sandra/Documents/MEGA/DAM/2%20DAM/Acceso%20a%20datos/UD06%20-%20Spring/UD05_DirectorioBibliotecasCRUD/src/java/ejemplo03/dominio/Municipio.java</file>
+            <file>file:/C:/Users/Sandra/Documents/MEGA/DAM/2%20DAM/Acceso%20a%20datos/UD06%20-%20Spring/UD05_DirectorioBibliotecasCRUD/web/WEB-INF/applicationContext.xml</file>
+            <file>file:/C:/Users/Sandra/Documents/MEGA/DAM/2%20DAM/Acceso%20a%20datos/UD06%20-%20Spring/UD05_DirectorioBibliotecasCRUD/web/WEB-INF/dispatcher-servlet.xml</file>
         </group>
     </open-files>
 </project-private>

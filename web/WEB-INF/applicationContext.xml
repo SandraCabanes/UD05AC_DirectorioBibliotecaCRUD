@@ -13,5 +13,5 @@
 
     <bean class="com.fpmislata.persistencia.hibernate.HibernateUtil" factory-method="getSessionFactory"  />
     <bean class="ejemplo03.persistencia.dao.impl.BibliotecaDAOImplHibernate" />
-
+<bean class="ejemplo03.persistencia.dao.impl.MunicipioDAOImplHibernate" />
 </beans>

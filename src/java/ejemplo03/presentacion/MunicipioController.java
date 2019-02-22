@@ -6,9 +6,8 @@ package ejemplo03.presentacion;
 
 import com.fpmislata.persistencia.dao.BussinessException;
 import com.fpmislata.persistencia.dao.BussinessMessage;
-import ejemplo03.dominio.Biblioteca;
-import ejemplo03.persistencia.dao.BibliotecaDAO;
-import ejemplo03.persistencia.dao.BibliotecaDAO;
+import ejemplo03.dominio.Municipio;
+import ejemplo03.persistencia.dao.MunicipioDAO;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
@@ -26,48 +25,48 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Lorenzo González
  */
 @Controller
-public class BibliotecaController {
+public class MunicipioController {
 
     @Autowired
-    private BibliotecaDAO bibliotecaDAO;
+    private MunicipioDAO municipioDAO;
     
-    @RequestMapping({"/index2.html"})
-    public ModelAndView listarBibliotecas(HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping({"/index3.html"})
+    public ModelAndView listarMunicipios(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
 
         try {
-                List<Biblioteca> bibliotecas=bibliotecaDAO.findAll();
-            model.put("bibliotecas",bibliotecas);
-            viewName = "bibliotecaLista";
+                List<Municipio> municipios=municipioDAO.findAll();
+            model.put("municipio",municipios);
+            viewName = "municipioLista";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("backURL", request.getContextPath() + "/index2.html");
+            model.put("backURL", request.getContextPath() + "/index3.html");
             viewName = "error";
         }
 
         return new ModelAndView(viewName, model);
     }
-    @RequestMapping({"/biblioteca/newForInsert"})
+    @RequestMapping({"/municipio/newForInsert"})
     public ModelAndView newForInsert(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
 
         try {
-            Biblioteca biblioteca = bibliotecaDAO.create();
+            Municipio municipio = municipioDAO.create();
             model.put("formOperation", FormOperation.Insert);
-            model.put("biblioteca", biblioteca);
-            viewName = "biblioteca";
+            model.put("municipio", municipio);
+            viewName = "municipio";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("backURL", request.getContextPath() + "/index2.html");
+            model.put("backURL", request.getContextPath() + "/index3.html");
             viewName = "error";
         }
 
         return new ModelAndView(viewName, model);
     }
 
-    @RequestMapping({"/biblioteca/readForUpdate"})
+    @RequestMapping({"/municipio/readForUpdate"})
     public ModelAndView readForUpdate(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
@@ -80,23 +79,23 @@ public class BibliotecaController {
                 throw new BussinessException(new BussinessMessage(null,"Se debe escribir un Id válido"));
             }
 
-            Biblioteca biblioteca = bibliotecaDAO.get(id);
-            if (biblioteca == null) {
-                throw new BussinessException(new BussinessMessage(null, "No existe la biblioteca con id=" + id));
+            Municipio municipio = municipioDAO.get(id);
+            if (municipio == null) {
+                throw new BussinessException(new BussinessMessage(null, "No existe el municipio con id=" + id));
             }
             model.put("formOperation", FormOperation.Update);
-            model.put("biblioteca", biblioteca);
-            viewName = "biblioteca";
+            model.put("municipio", municipio);
+            viewName = "municipio";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("backURL", request.getContextPath() + "/index2.html");
+            model.put("backURL", request.getContextPath() + "/index3.html");
             viewName = "error";
         }
 
         return new ModelAndView(viewName, model);
     }
 
-    @RequestMapping({"/biblioteca/readForDelete"})
+    @RequestMapping({"/municipio/readForDelete"})
     public ModelAndView readForDelete(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
@@ -108,23 +107,23 @@ public class BibliotecaController {
                 throw new BussinessException(new BussinessMessage(null,"Se debe escribir un Id válido"));
             }
 
-            Biblioteca biblioteca = bibliotecaDAO.get(id);
-            if (biblioteca == null) {
-                throw new BussinessException(new BussinessMessage(null, "No existe la biblioteca con id=" + id));
+            Municipio municipio = municipioDAO.get(id);
+            if (municipio == null) {
+                throw new BussinessException(new BussinessMessage(null, "No existe el municipio con id=" + id));
             }
             model.put("formOperation", FormOperation.Delete);
-            model.put("biblioteca", biblioteca);
-            viewName = "biblioteca";
+            model.put("municipio", municipio);
+            viewName = "municipio";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("backURL", request.getContextPath() + "/index2.html");
+            model.put("backURL", request.getContextPath() + "/index3.html");
             viewName = "error";
         }
 
         return new ModelAndView(viewName, model);
     }
 
-    @RequestMapping({"/biblioteca/insert.html"})
+    @RequestMapping({"/municipio/insert.html"})
     public ModelAndView insert(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
@@ -135,31 +134,25 @@ public class BibliotecaController {
             throw new RuntimeException(ex);
         }
 
-        Biblioteca biblioteca = null;
+        Municipio municipio = null;
         try {
-            biblioteca = bibliotecaDAO.create();
+            municipio = municipioDAO.create();
 
-            biblioteca.setTipo(request.getParameter("tipo"));
-            biblioteca.setNombre(request.getParameter("nombre"));
-            biblioteca.setDireccion(request.getParameter("direccion"));
-            biblioteca.setCodPostal(request.getParameter("codPostal"));
-            biblioteca.setTelefono(request.getParameter("telefono"));
-            biblioteca.setWeb(request.getParameter("web"));
-            biblioteca.setEmail(request.getParameter("email"));
-            biblioteca.setCatalogo(request.getParameter("catalogo"));
+            municipio.setCodMunicipio(Integer.parseInt(request.getParameter("codMunicipio")));
+               
             
 
-            bibliotecaDAO.saveOrUpdate(biblioteca);
+            municipioDAO.saveOrUpdate(municipio);
 
-            viewName = "redirect:/index2.html";
+            viewName = "redirect:/index3.html";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            if (biblioteca!=null) {
-                biblioteca.setIdBiblioteca(0);
+            if (municipio!=null) {
+                municipio.setIdMunicipio(0);
             }
-            model.put("biblioteca", biblioteca);
+            model.put("municipio", municipio);
             model.put("formOperation", FormOperation.Insert);
-            viewName = "biblioteca";
+            viewName = "municipio";
         }
 
 
@@ -167,7 +160,7 @@ public class BibliotecaController {
         return new ModelAndView(viewName, model);
     }
 
-    @RequestMapping({"/biblioteca/update.html"})
+    @RequestMapping({"/municipio/update.html"})
     public ModelAndView update(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
@@ -176,7 +169,7 @@ public class BibliotecaController {
         } catch (UnsupportedEncodingException ex) {
             throw new RuntimeException(ex);
         }
-        Biblioteca biblioteca = null;
+        Municipio municipio = null;
         try {
             int id;
             try {
@@ -184,38 +177,32 @@ public class BibliotecaController {
             } catch (NumberFormatException nfe) {
                 throw new BussinessException(new BussinessMessage(null,"Se debe escribir un Id válido"));
             }
-            biblioteca = bibliotecaDAO.get(id);
-            if (biblioteca == null) {
-                throw new BussinessException(new BussinessMessage(null, "Ya no existe la biblioteca."));
+            municipio = municipioDAO.get(id);
+            if (municipio == null) {
+                throw new BussinessException(new BussinessMessage(null, "Ya no existe el municipio."));
             }
-            biblioteca.setTipo(request.getParameter("tipo"));
-            biblioteca.setNombre(request.getParameter("nombre"));
-            biblioteca.setDireccion(request.getParameter("direccion"));
-            biblioteca.setCodPostal(request.getParameter("codPostal"));
-            biblioteca.setTelefono(request.getParameter("telefono"));
-            biblioteca.setWeb(request.getParameter("web"));
-            biblioteca.setEmail(request.getParameter("email"));
-            biblioteca.setCatalogo(request.getParameter("catalogo"));
+            municipio.setCodMunicipio(Integer.parseInt(request.getParameter("codMunicipio")));
+             
 
-            bibliotecaDAO.saveOrUpdate(biblioteca);
+            municipioDAO.saveOrUpdate(municipio);
 
-            viewName = "redirect:/index2.html";
+            viewName = "redirect:/index3.html";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("biblioteca", biblioteca);
+            model.put("municipio", municipio);
             model.put("formOperation", FormOperation.Update);
-            viewName = "biblioteca";
+            viewName = "municipio";
         }
 
         return new ModelAndView(viewName, model);
     }
 
-    @RequestMapping({"/biblioteca/delete.html"})
+    @RequestMapping({"/municipio/delete.html"})
     public ModelAndView delete(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
 
-        Biblioteca biblioteca=null;
+        Municipio municipio=null;
         try {
             int id;
             try {
@@ -223,19 +210,19 @@ public class BibliotecaController {
             } catch (NumberFormatException nfe) {
                 throw new BussinessException(new BussinessMessage(null,"Se debe escribir un Id válido"));
             }
-            biblioteca = bibliotecaDAO.get(id);
-            if (biblioteca == null) {
-                throw new BussinessException(new BussinessMessage(null, "Ya no existe la biblioteca a borrar"));
+            municipio = municipioDAO.get(id);
+            if (municipio == null) {
+                throw new BussinessException(new BussinessMessage(null, "Ya no existe el municipio a borrar"));
             }
 
-            bibliotecaDAO.delete(id);
+            municipioDAO.delete(id);
 
-            viewName = "redirect:/index2.html";
+            viewName = "redirect:/index3.html";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("biblioteca", biblioteca);
+            model.put("municipio", municipio);
             model.put("formOperation", FormOperation.Delete);
-            viewName = "biblioteca";
+            viewName = "municipio";
         }
 
         return new ModelAndView(viewName, model);

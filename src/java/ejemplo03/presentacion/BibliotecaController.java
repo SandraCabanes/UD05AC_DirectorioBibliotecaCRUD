@@ -31,7 +31,7 @@ public class BibliotecaController {
     @Autowired
     private BibliotecaDAO bibliotecaDAO;
     
-    @RequestMapping({"/index2.html"})
+    @RequestMapping({"/bibliotecas.html"})
     public ModelAndView listarBibliotecas(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
@@ -42,7 +42,7 @@ public class BibliotecaController {
             viewName = "bibliotecaLista";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("backURL", request.getContextPath() + "/index2.html");
+            model.put("backURL", request.getContextPath() + "/bibliotecas.html");
             viewName = "error";
         }
 
@@ -60,7 +60,7 @@ public class BibliotecaController {
             viewName = "biblioteca";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("backURL", request.getContextPath() + "/index2.html");
+            model.put("backURL", request.getContextPath() + "/bibliotecas.html");
             viewName = "error";
         }
 
@@ -89,7 +89,7 @@ public class BibliotecaController {
             viewName = "biblioteca";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("backURL", request.getContextPath() + "/index2.html");
+            model.put("backURL", request.getContextPath() + "/bibliotecas.html");
             viewName = "error";
         }
 
@@ -117,7 +117,7 @@ public class BibliotecaController {
             viewName = "biblioteca";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("backURL", request.getContextPath() + "/index2.html");
+            model.put("backURL", request.getContextPath() + "/bibliotecas.html");
             viewName = "error";
         }
 
@@ -151,7 +151,7 @@ public class BibliotecaController {
 
             bibliotecaDAO.saveOrUpdate(biblioteca);
 
-            viewName = "redirect:/index2.html";
+            viewName = "redirect:/bibliotecas.html";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
             if (biblioteca!=null) {
@@ -199,7 +199,7 @@ public class BibliotecaController {
 
             bibliotecaDAO.saveOrUpdate(biblioteca);
 
-            viewName = "redirect:/index2.html";
+            viewName = "redirect:/bibliotecas.html";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
             model.put("biblioteca", biblioteca);
@@ -230,7 +230,7 @@ public class BibliotecaController {
 
             bibliotecaDAO.delete(id);
 
-            viewName = "redirect:/index2.html";
+            viewName = "redirect:/bibliotecas.html";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
             model.put("biblioteca", biblioteca);

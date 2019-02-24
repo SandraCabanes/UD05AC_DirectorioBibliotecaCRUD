@@ -30,7 +30,7 @@ public class MunicipioController {
     @Autowired
     private MunicipioDAO municipioDAO;
     
-    @RequestMapping({"/index3.html"})
+    @RequestMapping({"/municipios.html"})
     public ModelAndView listarMunicipios(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
@@ -41,7 +41,7 @@ public class MunicipioController {
             viewName = "municipioLista";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("backURL", request.getContextPath() + "/index3.html");
+            model.put("backURL", request.getContextPath() + "/municipios.html");
             viewName = "error";
         }
 
@@ -59,7 +59,7 @@ public class MunicipioController {
             viewName = "municipio";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("backURL", request.getContextPath() + "/index3.html");
+            model.put("backURL", request.getContextPath() + "/municipios.html");
             viewName = "error";
         }
 
@@ -88,7 +88,7 @@ public class MunicipioController {
             viewName = "municipio";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("backURL", request.getContextPath() + "/index3.html");
+            model.put("backURL", request.getContextPath() + "/municipios.html");
             viewName = "error";
         }
 
@@ -116,7 +116,7 @@ public class MunicipioController {
             viewName = "municipio";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("backURL", request.getContextPath() + "/index3.html");
+            model.put("backURL", request.getContextPath() + "/municipios.html");
             viewName = "error";
         }
 
@@ -144,7 +144,7 @@ public class MunicipioController {
 
             municipioDAO.saveOrUpdate(municipio);
 
-            viewName = "redirect:/index3.html";
+            viewName = "redirect:/municipios.html";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
             if (municipio!=null) {
@@ -186,7 +186,7 @@ public class MunicipioController {
 
             municipioDAO.saveOrUpdate(municipio);
 
-            viewName = "redirect:/index3.html";
+            viewName = "redirect:/municipios.html";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
             model.put("municipio", municipio);
@@ -217,7 +217,7 @@ public class MunicipioController {
 
             municipioDAO.delete(id);
 
-            viewName = "redirect:/index3.html";
+            viewName = "redirect:/municipios.html";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
             model.put("municipio", municipio);

@@ -35,7 +35,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Directorio de bibliotecas de la comunidad valenciana</h5>
                     <p class="card-text">Web que permita acceder a la información de de las bibliotecas existentes en toda la Comunidad Valenciana, actualizado el 19 de febrero de 2018, para un acceso rápido sin necesidad de más búsquedas en internet.</p>
-                    <a href="https://github.com/SandraCabanes/UD05AC_DirectorioBibliotecaCRUD" class="btn btn-primary">GitHub</a>
+                    <a href="https://github.com/SandraCabanes/UD05AC_DirectorioBibliotecaSPRING" class="btn btn-primary">GitHub</a>
                 </div>
             </div>
 

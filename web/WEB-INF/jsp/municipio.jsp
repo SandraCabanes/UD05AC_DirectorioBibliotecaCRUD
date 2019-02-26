@@ -41,7 +41,7 @@
             <div class="span12">&nbsp;</div>
         </div>
         <div class="row">
-            <div class="offset1 span10 well">
+            <div class="offset1 well">
                 <h3>Municipio</h3>
                 <form action="<%=urlAction%>" method="post" >
                     <fieldset>
@@ -51,6 +51,51 @@
                         <label class="control-label" for="codMunicipio">Nombre:</label>
                         <input class="input-xlarge" id="codMunicipio" type="text" name="codMunicipio" value="${municipio.codMunicipio}" >
                     </fieldset>
+
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <table class="table table-bordered table-hover table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Nombre</th>
+                                        <th>Tipo</th>
+                                        <th>Direccion</th>
+                                        <th>Cod postal</th>
+                                        <th>Telefono</th>
+                                        <th>Web</th>
+                                        <th>Email</th>
+                                        <th>Catalogo</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <%
+                                        List<Biblioteca> bibliotecas = (List<Biblioteca>) request.getAttribute("bibliotecas");
+
+                                        for (Biblioteca biblioteca : bibliotecas) {
+                                    %>
+                                    <tr>
+                                        <td><a href="<%=request.getContextPath()%>/biblioteca/readForUpdate.html?id=<%=biblioteca.getIdBiblioteca()%>" title="Editar" ><%=biblioteca.getIdBiblioteca()%></a></td>
+                                        <td><%=HtmlUtils.htmlEscape(biblioteca.getNombre())%></td>
+                                        <td><%=HtmlUtils.htmlEscape(biblioteca.getTipo())%></td>
+                                        <td><%=HtmlUtils.htmlEscape(biblioteca.getDireccion())%></td>
+                                        <td><%=HtmlUtils.htmlEscape(biblioteca.getCodPostal())%></td>
+                                        <td><%=HtmlUtils.htmlEscape(biblioteca.getTelefono())%></td>
+                                        <td><%=HtmlUtils.htmlEscape(biblioteca.getWeb())%></td>
+                                        <td><%=HtmlUtils.htmlEscape(biblioteca.getEmail())%></td>
+                                        <td><%=HtmlUtils.htmlEscape(biblioteca.getCatalogo())%></td>
+                                        <td>
+                                            <a href="<%=request.getContextPath()%>/biblioteca/readForDelete.html?id=<%=biblioteca.getIdBiblioteca()%>" title="Borrar" ><span class="glyphicon glyphicon-trash"></span></a>
+                                        </td>
+                                    </tr>
+                                    <%
+                                        }
+                                    %>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
 
                     <% if (request.getAttribute("bussinessMessages") != null) {%>
                     <div class="alert alert-error alert-block">
@@ -67,7 +112,7 @@
                             <%} %>
                         </ul>
                     </div>
-                    <%} %>
+                    <%}%>
                     <div class="form-actions">
                         <button id="aceptarBtn" class="btn btn-primary" type="submit"><%=labelButton%></button>
                         <a class="btn" href="<%=request.getContextPath()%>/index.html" >Cancelar</a>

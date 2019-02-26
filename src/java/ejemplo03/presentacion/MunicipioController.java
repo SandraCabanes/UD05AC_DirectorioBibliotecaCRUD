@@ -6,15 +6,18 @@ package ejemplo03.presentacion;
 
 import com.fpmislata.persistencia.dao.BussinessException;
 import com.fpmislata.persistencia.dao.BussinessMessage;
+import ejemplo03.dominio.Biblioteca;
 import ejemplo03.dominio.Municipio;
 import ejemplo03.persistencia.dao.MunicipioDAO;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,15 +32,15 @@ public class MunicipioController {
 
     @Autowired
     private MunicipioDAO municipioDAO;
-    
+
     @RequestMapping({"/municipios.html"})
     public ModelAndView listarMunicipios(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
 
         try {
-                List<Municipio> municipios=municipioDAO.findAll();
-            model.put("municipio",municipios);
+            List<Municipio> municipios = municipioDAO.findAll();
+            model.put("municipio", municipios);
             viewName = "municipioLista";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
@@ -47,6 +50,7 @@ public class MunicipioController {
 
         return new ModelAndView(viewName, model);
     }
+
     @RequestMapping({"/municipio/newForInsert"})
     public ModelAndView newForInsert(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
@@ -76,13 +80,18 @@ public class MunicipioController {
             try {
                 id = Integer.parseInt(request.getParameter("id"));
             } catch (NumberFormatException nfe) {
-                throw new BussinessException(new BussinessMessage(null,"Se debe escribir un Id válido"));
+                throw new BussinessException(new BussinessMessage(null, "Se debe escribir un Id válido"));
             }
 
             Municipio municipio = municipioDAO.get(id);
             if (municipio == null) {
                 throw new BussinessException(new BussinessMessage(null, "No existe el municipio con id=" + id));
             }
+
+            List<Biblioteca> bibliotecas = new ArrayList<Biblioteca>();
+            bibliotecas.addAll(municipio.getBibliotecas());
+            model.put("bibliotecas", bibliotecas);
+
             model.put("formOperation", FormOperation.Update);
             model.put("municipio", municipio);
             viewName = "municipio";
@@ -104,7 +113,7 @@ public class MunicipioController {
             try {
                 id = Integer.parseInt(request.getParameter("id"));
             } catch (NumberFormatException nfe) {
-                throw new BussinessException(new BussinessMessage(null,"Se debe escribir un Id válido"));
+                throw new BussinessException(new BussinessMessage(null, "Se debe escribir un Id válido"));
             }
 
             Municipio municipio = municipioDAO.get(id);
@@ -139,23 +148,19 @@ public class MunicipioController {
             municipio = municipioDAO.create();
 
             municipio.setCodMunicipio(Integer.parseInt(request.getParameter("codMunicipio")));
-               
-            
 
             municipioDAO.saveOrUpdate(municipio);
 
             viewName = "redirect:/municipios.html";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            if (municipio!=null) {
+            if (municipio != null) {
                 municipio.setIdMunicipio(0);
             }
             model.put("municipio", municipio);
             model.put("formOperation", FormOperation.Insert);
             viewName = "municipio";
         }
-
-
 
         return new ModelAndView(viewName, model);
     }
@@ -175,14 +180,13 @@ public class MunicipioController {
             try {
                 id = Integer.parseInt(request.getParameter("id"));
             } catch (NumberFormatException nfe) {
-                throw new BussinessException(new BussinessMessage(null,"Se debe escribir un Id válido"));
+                throw new BussinessException(new BussinessMessage(null, "Se debe escribir un Id válido"));
             }
             municipio = municipioDAO.get(id);
             if (municipio == null) {
                 throw new BussinessException(new BussinessMessage(null, "Ya no existe el municipio."));
             }
             municipio.setCodMunicipio(Integer.parseInt(request.getParameter("codMunicipio")));
-             
 
             municipioDAO.saveOrUpdate(municipio);
 
@@ -202,13 +206,13 @@ public class MunicipioController {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
 
-        Municipio municipio=null;
+        Municipio municipio = null;
         try {
             int id;
             try {
                 id = Integer.parseInt(request.getParameter("id"));
             } catch (NumberFormatException nfe) {
-                throw new BussinessException(new BussinessMessage(null,"Se debe escribir un Id válido"));
+                throw new BussinessException(new BussinessMessage(null, "Se debe escribir un Id válido"));
             }
             municipio = municipioDAO.get(id);
             if (municipio == null) {

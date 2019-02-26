@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="ejemplo03.dominio.Biblioteca"%>
 <%@page import="java.util.Set"%>
 <%@page import="org.springframework.web.util.HtmlUtils"%>
 <%@page import="com.fpmislata.persistencia.dao.BussinessMessage"%>
@@ -48,10 +50,8 @@
 
                         <label class="control-label" for="codMunicipio">Nombre:</label>
                         <input class="input-xlarge" id="codMunicipio" type="text" name="codMunicipio" value="${municipio.codMunicipio}" >
-
-                       
-                        
                     </fieldset>
+
                     <% if (request.getAttribute("bussinessMessages") != null) {%>
                     <div class="alert alert-error alert-block">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
